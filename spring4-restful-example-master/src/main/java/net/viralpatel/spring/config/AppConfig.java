@@ -13,20 +13,17 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan(basePackages = "net.viralpatel.spring.")
-@PropertySource(value = { "classpath:application.properties" })
+@EnableWebMvc
+@ComponentScan(basePackages = "net.viralpatel.spring")
 public class AppConfig {
-
-    @Autowired
-    private Environment env;
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getRequiredProperty("jdbc.driverClassName"));
-        dataSource.setUrl(env.getRequiredProperty("jdbc.url"));
-        dataSource.setUsername(env.getRequiredProperty("jdbc.username"));
-        dataSource.setPassword(env.getRequiredProperty("jdbc.password"));
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/ejemplo?useSSL=false");
+        dataSource.setUsername("root");
+        dataSource.setPassword("admin");
         return dataSource;
     }
 

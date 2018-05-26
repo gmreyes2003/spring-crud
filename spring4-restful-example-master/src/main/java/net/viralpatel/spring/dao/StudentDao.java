@@ -10,8 +10,8 @@ public interface StudentDao {
      * database resources ie. connection.
      */
     public void create(String name, Integer age);
-    public Student getStudent(Integer id);
+    public Student getStudent(Long id);
     public List<Student> listStudents();
-    public void delete(Integer id);
-    public void update(Integer id, Integer age);
+    public void delete(Long id);
+    public void update(Long id, Student student);
 }

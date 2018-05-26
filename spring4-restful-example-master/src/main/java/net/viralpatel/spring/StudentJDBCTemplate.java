@@ -2,12 +2,12 @@ package net.viralpatel.spring;
 
 import net.viralpatel.spring.dao.StudentDao;
 import net.viralpatel.spring.model.Student;
+import net.viralpatel.spring.model.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
@@ -18,23 +18,33 @@ public class StudentJDBCTemplate implements StudentDao {
     JdbcTemplate jdbcTemplate;
 
     public void create(String name, Integer age) {
-        jdbcTemplate.update("INSERT INTO student (id, name, age) VALUES (?, ?, ?)", 12312,name,age);
+        jdbcTemplate.update("INSERT INTO student (id, name, age) VALUES (?, ?, ?)", 12312, name, age);
         System.out.println("Person Added!!");
     }
 
-    public Student getStudent(Integer id) {
-        return null;
+    public Student getStudent(Long id) {
+        String SQL = "select * from Student where id = ?";
+        Student student = jdbcTemplate.queryForObject(SQL, new Object[]{id}, new StudentMapper());
+        return student;
     }
 
     public List<Student> listStudents() {
-        return null;
+        String SQL = "select * from Student";
+        List <Student> students = jdbcTemplate.query(SQL, new StudentMapper());
+        return students;
     }
 
-    public void delete(Integer id) {
-
+    public void delete(Long id) {
+        String SQL = "delete from Student where id = ?";
+        jdbcTemplate.update(SQL, id);
+        System.out.println("Deleted Record with ID = " + id );
+        return;
     }
 
-    public void update(Integer id, Integer age) {
-
+    public void update(Long id, Student student) {
+        String SQL = "update Student set age = ? where id = ?";
+        jdbcTemplate.update(SQL, student.getAge(), id);
+        System.out.println("Updated Record with ID = " + id );
+        return;
     }
 }
