@@ -19,18 +19,20 @@ public class StudentJDBCTemplate implements StudentDao {
 
     public void create(String name, Integer age) {
         jdbcTemplate.update("INSERT INTO student (id, name, age) VALUES (?, ?, ?)", 12312, name, age);
-        System.out.println("Person Added!!");
+        System.out.println("Student Added!!");
     }
 
     public Student getStudent(Long id) {
         String SQL = "select * from Student where id = ?";
         Student student = jdbcTemplate.queryForObject(SQL, new Object[]{id}, new StudentMapper());
+        System.out.println("Student " + student.toString() );
         return student;
     }
 
     public List<Student> listStudents() {
         String SQL = "select * from Student";
         List <Student> students = jdbcTemplate.query(SQL, new StudentMapper());
+        System.out.println("list students " + students.toString() );
         return students;
     }
 
