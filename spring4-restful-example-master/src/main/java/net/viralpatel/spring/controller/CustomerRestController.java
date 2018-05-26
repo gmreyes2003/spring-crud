@@ -17,7 +17,6 @@ public class CustomerRestController {
 
 	@PostMapping("/students")
 	public ResponseEntity getStudent(@RequestBody Student student) {
-
 		studentDao.create(student.getName(),student.getAge());
 		return new ResponseEntity(student, HttpStatus.OK);
 	}

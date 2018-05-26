@@ -1,1 +1,4 @@
-.idea/
+
+spring4-restful-example-master/target/
+spring4-restful-example-master/.idea/
+*.iml
