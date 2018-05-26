@@ -1,6 +1,0 @@
-net\viralpatel\spring\config\AppConfig.class
-net\viralpatel\spring\model\Student.class
-net\viralpatel\spring\StudentJDBCTemplate.class
-net\viralpatel\spring\controller\CustomerRestController.class
-net\viralpatel\spring\dao\StudentDao.class
-net\viralpatel\spring\config\AppInitializer.class
